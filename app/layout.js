@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Toaster } from 'react-hot-toast';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-white transition-colors dark:bg-gray-900 dark:text-white ${geistSans.variable} ${geistMono.variable}`}>
+        <Toaster />
         <ThemeProvider>
           <Navbar />
           <main className="min-h-screen pt-24">

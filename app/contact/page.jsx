@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { fadeInUp, fadeIn, slideInLeft, slideInRight } from '@/app/utils/animation'
+import toast from 'react-hot-toast'
+import { Loader2 } from 'lucide-react'
 
 
 export default function Contact() {
@@ -16,21 +18,27 @@ export default function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setStatus('loading')
-        const res = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        })
-        if (res.ok) {
-            setStatus('success')
-            setFormData({
-                subject: '',
-                email: '',
-                text: ''
+        try {
+            setStatus('loading')
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
             })
+            if (res.ok) {
+                toast.success('Message successfully sent to admin')
+                setStatus('success')
+                setFormData({
+                    subject: '',
+                    email: '',
+                    text: ''
+                })
+            }
+        } catch (error) {
+            toast.error("Failed to send message. Please try again.");
+            console.log("error in sending msg", error);
         }
     }
 
@@ -175,22 +183,15 @@ export default function Contact() {
                         <motion.button
                             type="submit"
                             disabled={status === 'loading'}
-                            className="w-full btn btn-primary"
+                            className="w-full btn btn-primary flex items-center justify-center gap-2"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
+                            {status === 'loading' && (
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                            )}
                             {status === 'loading' ? 'Sending...' : 'Send Message'}
                         </motion.button>
-
-                        {status === 'success' && (
-                            <motion.p
-                                className="text-green-500 text-center"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                            >
-                                {`Message successfully sent to admin`}
-                            </motion.p>
-                        )}
 
                         {status === 'error' && (
                             <motion.p
