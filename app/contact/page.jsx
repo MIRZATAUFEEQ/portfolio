@@ -87,7 +87,7 @@ export default function Contact() {
                             <FaEnvelope className="h-6 w-6 text-primary" />
                             <div>
                                 <h3 className="font-semibold">Email</h3>
-                                <a href="mailto:your.email@example.com" className="text-secondary hover:text-primary">
+                                <a href="mailto:taufeeqmirza207@gmail.com" className="text-secondary hover:text-primary">
                                     taufeeqmirza207@gmail.com
                                 </a>
                             </div>
@@ -102,7 +102,7 @@ export default function Contact() {
                             <FaPhone className="h-6 w-6 text-primary" />
                             <div>
                                 <h3 className="font-semibold">Phone</h3>
-                                <a href="tel:+1234567890" className="text-secondary hover:text-primary">
+                                <a href="tel:8112478534" className="text-secondary hover:text-primary">
                                     +91 8112478534
                                 </a>
                             </div>
