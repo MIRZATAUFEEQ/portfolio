@@ -14,7 +14,7 @@ export const projects = [
         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
         githubLink: 'https://github.com',
         demoLink: 'https://srajengineering.in/',
-        image: '/srajengineering.png',
+        image: '/s-rajengineering.png',
     },
     {
         title: 'FOCUS INSTITUTE',
